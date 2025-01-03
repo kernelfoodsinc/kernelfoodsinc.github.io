@@ -1,2 +1,4 @@
-# eatkernel.com
-kernel web temp https://kernelfoodsinc.github.io/eatkernel.com/
+
+# EatKernel.com : Web Placeholder
+
+GHPages https://kernelfoodsinc.github.io pointed at https://eatkernel.com
