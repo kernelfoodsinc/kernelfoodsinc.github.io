@@ -1,11 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-100" data-bs-theme="kernel">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EatKernel.com | Welcome</title>
+  <link rel="icon" href="img/logo.svg" />
+  <link href="css/bootstrap.core.min.css" rel="stylesheet" />
+  <link href="css/bootstrap.kernel.skin.css" rel="stylesheet" />
 </head>
-<body>
-    dev.eatkernel.com
+
+<body class="d-flex h-100 text-center">
+  <div class="container d-flex w-100 h-100 mx-auto flex-column">
+    <div class="new d-flex flex-column gap-4 ps-2 pe-2">
+      <img style="width: 64px" src="img/logo.svg">
+
+      <!-- Copy -->
+      <div class="d-flex flex-column gap-4 mt-4">
+        <h1 class="h1 special">A new Kernel is coming.</h1>
+        <h1 class="special">New menu. New space.</h1>
+        <h1 class="special">Spring 2025</h1>
+      </div>
+
+
+      <!-- Loading -->
+      <div id="gFormLoading" style="display: none;">
+        <div style="color:#000" class="spinner-border" role="status">
+          <span class="visually-hidden">Loading&hellip;</span>
+        </div>
+      </div>
+
+      <!-- Confirmation -->
+      <div id="gformSuccess" style="display:none;" class="emailsuccess">
+        Thanks for signing up!
+      </div>
+
+      <!-- GForm Connection -->
+      <form
+        action="https://docs.google.com/forms/d/e/1FAIpQLSeYZ88nS_vLy0FUP6b_K7TeHi5-vSsLGGoRCl7NZbg-QU_wEw/formResponse?"
+        id="gform" class="form" name="gform" enctype="text/plain" target="gFormRecall">
+        <div class="row">
+          <div class="col-12 col-sm-9 position-relative">
+            <input type="email" name="entry.971843115" id="entry.971843115" required="true" autocomplete="off"
+              autocapitalize="off" spellcheck="false" class="special-input" placeholder="Enter email for updates">
+            <button class="mt-2 me-3 border-0 bg-transparent position-absolute top-0 end-0" type="submit">
+              <img src="img/arrow.svg" />
+            </button>
+          </div>
+        </div>
+      </form>
+
+
+    </div>
+  </div>
+  <!-- GForm Submission Target -->
+  <iframe name="gFormRecall" id="gFormRecall" style="display:none;"></iframe>
+  <script src="js/forms.js"></script>
+  <script src="js/lib.js"></script>
 </body>
+
 </html>
