@@ -1,0 +1,18 @@
+body {
+    background-color: pink;
+}
+
+/* Medium devices such as tablets (1024px or lesser) */
+@media only screen and (max-width: 1024px) {
+    body {
+        background-color: red;
+    }
+}
+
+/* Small devices such as phones (768px or lesser) */
+@media only screen and (max-width: 768px) {
+
+    body {
+        background-color: green;
+    }
+}
