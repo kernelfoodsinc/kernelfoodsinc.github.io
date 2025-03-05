@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,77 +9,86 @@
   <script src="https://kernelfoodsinc.github.io/js/lib.packed.js"></script>
   <style>
     body {
-      font-family:Arial, Helvetica, sans-serif;
+      font-family: Arial, Helvetica, sans-serif;
       padding: .5em;
+    }
+    code {
+      background-color: #000;
+      color: pink;
     }
     main {
       display: flex;
       justify-content: stretch;
       gap: .5em;
+      flex-direction: row;
 
       fieldset {
         width: 25%;
         font-family: 'Courier New', Courier, monospace;
       }
     }
+
     legend {
-          text-align: center;
-          font-family:Arial, Helvetica, sans-serif
-        }
+      text-align: center;
+      font-family: Arial, Helvetica, sans-serif
+    }
 
     header {
-        margin: 0 0 1em;
-      }
-    
+      margin: 0 0 1em;
+    }
   </style>
 </head>
 
 <body>
 
   <header>
-
+    <h1>Palindrome Challenge</h1>
     <fieldset>
       <legend>Instructions</legend>
+
       <ol>
-        <li><s>Include lib.packed.js in index.html</s></li>
-        <li><s>Use lib function <code>generateRandomStringArray(length,percent,min,max)</code> to create const <code>randomStringArray</code></s></li>
+        <li>Create a local copy of this <code>index.html</code> file</li>
+        <li><s>Update <code>index.html</code> to include <code>lib.packed.js</code></s></li>
+        <li><s>Use lib function <code>generateRandomStringArray(length,percent,min,max)</code> to create
+            <code>const randomStringArray</code></s></li>
         <li><s>Populate the "All Strings" fieldset with <code>randomStringArray</code> values</s></li>
         <li>Complete unfinished function <code>isStringPalindrome(string)</code></li>
         <li>Populate the remaining fieldsets according to their labels</li>
+        <li>Take a screenshot image of your solved UI</li>
+        <li>Save and compress <code>index.html</code> and the screenshot image as <code>`firstName_lastName_solution.zip`</code></li>
+        <li>Email <code>`firstName_lastName_solution.zip`</code> to <a
+            href="mailto:engineering@kernel.inc">engineering@kernel.inc</a></li>
+          <li>🎉</li>
       </ol>
     </fieldset>
   </header>
-    
+
 
   <main>
     <fieldset id="all-strings">
       <legend>All Strings</legend>
     </fieldset>
-   
+
     <fieldset id="non-palindromes">
       <legend>All Non-Palindromes</legend>
     </fieldset>
-  
+
     <fieldset id="all-palindromes">
       <legend>All Palindromes</legend>
     </fieldset>
-  
+
     <fieldset id="longest-palindrome">
       <legend>The Longest Palindrome</legend>
     </fieldset>
   </main>
 
-
-
- 
-
   <script>
 
     window.addEventListener("load", () => {
-      const randomStringArray = generateRandomStringArray(50,7,3,8)
+      const randomStringArray = generateRandomStringArray(50, 7, 3, 8)
       const allStringsListElement = document.querySelector("fieldset#all-strings")
       const nonPalindromeListElement = document.querySelector("fieldset#non-palindromes")
-      
+
       randomStringArray.forEach(string => {
         allStringsListElement.append(document.createTextNode(`${string}\n`))
       });
@@ -89,7 +96,7 @@
       function isStringPalindrome(string) {
         //
       }
-      
+
     })
   </script>
 
