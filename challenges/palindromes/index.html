@@ -1,0 +1,98 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kernel Engineering | Palindrome Challenge</title>
+  <link rel="icon" href="img/logo.svg" />
+  <script src="https://kernelfoodsinc.github.io/js/lib.packed.js"></script>
+  <style>
+    body {
+      font-family:Arial, Helvetica, sans-serif;
+      padding: .5em;
+    }
+    main {
+      display: flex;
+      justify-content: stretch;
+      gap: .5em;
+
+      fieldset {
+        width: 25%;
+        font-family: 'Courier New', Courier, monospace;
+      }
+    }
+    legend {
+          text-align: center;
+          font-family:Arial, Helvetica, sans-serif
+        }
+
+    header {
+        margin: 0 0 1em;
+      }
+    
+  </style>
+</head>
+
+<body>
+
+  <header>
+
+    <fieldset>
+      <legend>Instructions</legend>
+      <ol>
+        <li><s>Include lib.packed.js in index.html</s></li>
+        <li><s>Use lib function <code>generateRandomStringArray(length,percent,min,max)</code> to create const <code>randomStringArray</code></s></li>
+        <li><s>Populate the "All Strings" fieldset with <code>randomStringArray</code> values</s></li>
+        <li>Complete unfinished function <code>isStringPalindrome(string)</code></li>
+        <li>Populate the remaining fieldsets according to their labels</li>
+      </ol>
+    </fieldset>
+  </header>
+    
+
+  <main>
+    <fieldset id="all-strings">
+      <legend>All Strings</legend>
+    </fieldset>
+   
+    <fieldset id="non-palindromes">
+      <legend>All Non-Palindromes</legend>
+    </fieldset>
+  
+    <fieldset id="all-palindromes">
+      <legend>All Palindromes</legend>
+    </fieldset>
+  
+    <fieldset id="longest-palindrome">
+      <legend>The Longest Palindrome</legend>
+    </fieldset>
+  </main>
+
+
+
+ 
+
+  <script>
+
+    window.addEventListener("load", () => {
+      const randomStringArray = generateRandomStringArray(50,7,3,8)
+      const allStringsListElement = document.querySelector("fieldset#all-strings")
+      const nonPalindromeListElement = document.querySelector("fieldset#non-palindromes")
+      
+      randomStringArray.forEach(string => {
+        allStringsListElement.append(document.createTextNode(`${string}\n`))
+      });
+
+      function isStringPalindrome(string) {
+        //
+      }
+      
+    })
+  </script>
+
+</body>
+
+</html>
