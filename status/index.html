@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <link rel="icon" href="../img/logo.svg" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kernel Systems Status</title>
@@ -9,13 +10,20 @@
 </head>
 
 <body>
-    <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
+    <nav class="navbar bg-light text-dark shadow-sm" data-bs-theme="dark">
         <div class="container-fluid">
-            <span class="navbar-brand mb-0 h1">Kernel Systems Status</span>
+            <span class="navbar-brand mb-0 h1"><small><img width="50" src="../img/logo.svg"></small></span>
+         
+            <span id="system-time" class="small text-dark">
+                <div class="spinner-grow" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </span>
         </div>
     </nav>
 
-    <main class="container">
+    <main class="container my-4">
+      
         <div class="row " id="health-matrix">
             <div class="text-center p-4">
                 <div class="spinner-grow" role="status">
@@ -23,11 +31,20 @@
                 </div>
             </div>
         </div>
+    </fieldset>
     </main>
 
     <script>
         const token = `mbrmi0sypof7f1hdjsxgzbf1yxd7rrulks32u7bs`
         window.addEventListener("load", () => {
+
+            function drawSystemTime() {
+               const systemTimeElement = document.getElementById("system-time")
+                
+               systemTimeElement.style.fontVariantNumeric =  'tabular-nums'
+               systemTimeElement.textContent = `🕒 ${new Date().toLocaleString()}`;
+            }
+            setInterval(drawSystemTime);
 
             function drawHealthMatrix(jsonResponse) {
                 const healthMatrixElement = document.querySelector('#health-matrix')
@@ -71,7 +88,7 @@
                                  <div class="card-footer text-body-secondary">
                                 <small>${testResult.status == 200 ? "✅" : "⚠️"} ${testResult.datetime}</small>
                                 &bull;
-                                <small>🕒${testResult.message}</small>
+                                <small>⏱️${testResult.message}</small>
                                 </div>
                                 </div>
                             </a>
