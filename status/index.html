@@ -23,8 +23,8 @@
                 </div>
             </div>
         </div>
-
     </main>
+
     <script>
         const token = `mbrmi0sypof7f1hdjsxgzbf1yxd7rrulks32u7bs`
         window.addEventListener("load", () => {
@@ -41,30 +41,40 @@
                 // console.log(groubedByName);
                 healthMatrixElement.innerHTML = null;
 
-                Object.keys(groubedByName).forEach((testName) => {
+                Object.keys(groubedByName).forEach((testURL) => {
                     let template = `<div class="col-12 col-lg-6">`
-                    groubedByName[testName].reverse()
-                    groubedByName[testName].forEach((testResult, i) => {
+                    groubedByName[testURL].reverse()
+                    groubedByName[testURL].forEach((testResult, i) => {
                         template += `
+                             <a style="text-decoration:none;" href="${testURL}">
                             <div class="my-2 card ${i > 0 ? 'd-none' : ''} text-center">
                                 <div style="--bs-bg-opacity: .5;" class="card-header  ${testResult.status == 200 ? 'bg-success border' : 'bg-danger border-danger'}">
+                                 
                                     <div class="d-flex justify-content-between text-nowrap overflow-hidden overflow-ellipsis " style="width: 100%;">  
-                                        <div>${testResult.status == 200 ? '🟢' : '🔴'}</div>
-                                        <div>
-                                            <small><strong> ${testName.replace("https://", "")}</strong></small>
-                                        </div> 
-                                        <div>
+                                   
+                                     <div>${testResult.status == 200 ? '🟢' : '🔴'}
                                             <code class="${testResult.status == 200 ? 'text-success' : 'text-danger'}"> ${testResult.status} </code>
                                         </div> 
+                                        <div class="text-muted">
+                                            <small><strong>🔗 ${testURL.replace("https://", "")}</strong></small>
+                                        </div> 
+                                        
+                                      
                                 </div>
                             </div>
                             
                             <div class="card-body bg-dark text-light">
-                                <img class="img-thumbnail shadow mx-auto my-2" style="display:block; max-width:200px;" src="data:image/png;base64,${testResult.image}"/>
+                        <img class="img-thumbnail shadow mx-auto my-2" style="display:block; max-width:300px;" src="data:image/png;base64,${testResult.image}"/>
+                               
+                            
+                                </div>
+                                 <div class="card-footer text-body-secondary">
                                 <small>${testResult.status == 200 ? "✅" : "⚠️"} ${testResult.datetime}</small>
                                 &bull;
-                                <small>${testResult.message}</small>
-                            </div>
+                                <small>🕒${testResult.message}</small>
+                                </div>
+                                </div>
+                            </a>
                     `
 
                     });
