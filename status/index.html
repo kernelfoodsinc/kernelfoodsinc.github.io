@@ -15,36 +15,74 @@
         </div>
     </nav>
 
-    <div class="container" id="table-container">
-        <div class="text-center p-4">
-            <div class="spinner-grow" role="status">
-                <span class="visually-hidden">Loading...</span>
+    <main class="container">
+        <div class="row " id="health-matrix">
+            <div class="text-center p-4">
+                <div class="spinner-grow" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
             </div>
         </div>
-    </div>
+
+    </main>
     <script>
         const token = `mbrmi0sypof7f1hdjsxgzbf1yxd7rrulks32u7bs`
         window.addEventListener("load", () => {
 
-            function convertJSONToTable(jsonData) {
-                let headers = Object.keys(jsonData[0]);
-                let table = '<table class="table"><thead><tr>';
+            function drawHealthMatrix(jsonResponse) {
+                const healthMatrixElement = document.querySelector('#health-matrix')
+                var groupBy = function (xs, key) {
+                    return xs.reduce(function (rv, x) {
+                        (rv[x[key]] = rv[x[key]] || []).push(x);
+                        return rv;
+                    }, {});
+                };
+                var groubedByName = groupBy(jsonResponse, 'name')
+                // console.log(groubedByName);
+                healthMatrixElement.innerHTML = null;
 
-                headers.forEach(header => table += `<th>${header}</th>`);
-                table += '</tr></thead><tbody>';
+                Object.keys(groubedByName).forEach((testName) => {
+                    let template = `<div class="col-12 col-lg-6">`
+                    groubedByName[testName].reverse()
+                    groubedByName[testName].forEach((testResult, i) => {
+                        template += `
+                            <div class="my-2 card ${i > 0 ? 'd-none' : ''} text-center">
+                                <div style="--bs-bg-opacity: .5;" class="card-header  ${testResult.status == 200 ? 'bg-success border' : 'bg-danger border-danger'}">
+                                    <div class="d-flex justify-content-between text-nowrap overflow-hidden overflow-ellipsis " style="width: 100%;">  
+                                        <div>${testResult.status == 200 ? '🟢' : '🔴'}</div>
+                                        <div>
+                                            <small><strong> ${testName.replace("https://", "")}</strong></small>
+                                        </div> 
+                                        <div>
+                                            <code class="${testResult.status == 200 ? 'text-success' : 'text-danger'}"> ${testResult.status} </code>
+                                        </div> 
+                                </div>
+                            </div>
+                            
+                            <div class="card-body bg-dark text-light">
+                                <img class="img-thumbnail shadow mx-auto my-2" style="display:block; max-width:200px;" src="data:image/png;base64,${testResult.image}"/>
+                                <small>${testResult.status == 200 ? "✅" : "⚠️"} ${testResult.datetime}</small>
+                                &bull;
+                                <small>${testResult.message}</small>
+                            </div>
+                    `
 
-                jsonData.forEach(row => {
-                    table += '<tr>';
-                    headers.forEach(header => table += `<td>${row[header]}</td>`);
-                    table += '</tr>';
+                    });
+
+                    template += '</div>'
+
+                    healthMatrixElement.innerHTML += (template)
+
                 });
 
-                table += '</tbody></table>';
-
-                document.getElementById('table-container').innerHTML = table;
             }
 
-            fetch('https://sheetdb.io/api/v1/9bo718p1h3mvi', {
+            let endpoint = {
+                live: "https://sheetdb.io/api/v1/9bo718p1h3mvi",
+                cached: "cached.json"
+            }
+
+            fetch(endpoint.live, {
                 method: 'GET',
                 headers: {
                     'Content-type': 'application/json',
@@ -53,7 +91,8 @@
             })
                 .then(function (response) { return response.json(); })
                 .then(function (json) {
-                    convertJSONToTable(json)
+
+                    drawHealthMatrix(json)
                 });
         })
     </script>
