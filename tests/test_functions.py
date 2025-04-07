@@ -19,6 +19,22 @@ from selenium.common.exceptions import WebDriverException
 from selenium.common.exceptions import NoAlertPresentException
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support import expected_conditions as EC
+import pickle
+import mimetypes
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.base import MIMEBase
+from email import encoders
+from google.auth.transport.requests import Request
+from google.oauth2.credentials import Credentials
+from google_auth_oauthlib.flow import InstalledAppFlow
+from googleapiclient.discovery import build
+from googleapiclient.errors import HttpError
+from selenium.webdriver.support.ui import Select
+
+SCOPES = ['https://www.googleapis.com/auth/gmail.send']
+
+
 
 def send_test_data(name, status, message, image):
     # Headers with Authorization token from config
@@ -31,10 +47,11 @@ def send_test_data(name, status, message, image):
     data = {
         'name': name,
         'status': status,
-        'datetime': datetime.now().isoformat(),  # Current datetime in ISO format
+        'datetime': str(datetime.now()),
         'message': message,
         'image': image
     }
+    #print(data)
 
     # Send POST request with headers
     response = requests.post(config.auth_url, headers=headers, json=data)
@@ -47,7 +64,7 @@ def send_test_data(name, status, message, image):
         print(f'Failed to send data. Status code: {response.status_code}')
 
 def initialize_driver():
-#    global driver  # Ensure we're modifying the global variable
+    global driver  # Ensure we're modifying the global variable
     options = webdriver.ChromeOptions()
     options.add_argument("--headless")  # Run in headless mode (no UI)
     options.add_argument("--disable-gpu")  # Helps with some headless issues
@@ -181,9 +198,76 @@ def take_small_screenshot(driver):
 
     # Convert to JPEG (smaller than PNG) and compress
     output_buffer = io.BytesIO()
-    image.save(output_buffer, format="JPEG", quality=45)  # Lower quality = smaller size
+    image.save(output_buffer, format="JPEG", quality=25)  # Lower quality = smaller size
 
     # Convert back to Base64
     compressed_base64 = base64.b64encode(output_buffer.getvalue()).decode("utf-8")
     
     return compressed_base64
+
+
+
+    #email functions
+
+def authenticate_gmail():
+    """Authenticate and get credentials for Gmail API."""
+    creds = None
+    if os.path.exists('token.pickle'):
+        with open('token.pickle', 'rb') as token:
+            creds = pickle.load(token)
+
+    if not creds or not creds.valid:
+        if creds and creds.expired and creds.refresh_token:
+            creds.refresh(Request())
+        else:
+            flow = InstalledAppFlow.from_client_secrets_file(
+                'client_secret_10.json', SCOPES)
+            creds = flow.run_local_server(port=8080)
+
+        with open('token.pickle', 'wb') as token:
+            pickle.dump(creds, token)
+
+    return creds
+
+
+def create_message(sender, to, subject, body, attachments, cc=None):
+    if attachments is None:
+        attachments = []
+    """Create a message container (multipart) for Gmail API."""
+    # Create the message container (multipart)
+    message = MIMEMultipart()
+    message['to'] = to
+    message['from'] = sender
+    message['subject'] = subject
+
+    if cc:
+        message['cc'] = cc
+
+    # Attach the email body (text)
+    body_part = MIMEText(body, 'plain')
+    message.attach(body_part)
+
+    # Attach each file in the attachments list
+    for attachment in attachments:
+        if isinstance(attachment, str):  # Make sure it's a valid file path (string)
+            with open(attachment, 'rb') as f:
+                attach_part = MIMEBase('application', 'octet-stream')
+                attach_part.set_payload(f.read())
+                encoders.encode_base64(attach_part)
+                attach_part.add_header('Content-Disposition', 'attachment', filename=attachment.split("\\")[-1])
+                message.attach(attach_part)
+
+    # Encode the message as base64
+    raw_message = base64.urlsafe_b64encode(message.as_bytes()).decode()
+
+    return raw_message
+
+
+
+def send_message(service, sender, raw_message):
+    try:
+        # Send the raw message to the Gmail API
+        message = service.users().messages().send(userId=sender, body={'raw': raw_message}).execute()
+        print(f'Sent message to {sender} Message Id: {message["id"]}')
+    except Exception as error:
+        print(f'An error occurred: {error}')
