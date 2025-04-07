@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <link rel="icon" href="../img/logo.svg" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kernel Systems Status</title>
@@ -9,42 +10,115 @@
 </head>
 
 <body>
-    <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
+    <nav class="navbar bg-light text-dark shadow-sm" data-bs-theme="dark">
         <div class="container-fluid">
-            <span class="navbar-brand mb-0 h1">Kernel Systems Status</span>
+            <span class="navbar-brand mb-0 h1"><small><img width="50" src="../img/logo.svg"></small></span>
+         
+            <span id="system-time" class="small text-dark">
+                <div class="spinner-grow" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </span>
         </div>
     </nav>
 
-    <div class="container" id="table-container">
-        <div class="text-center p-4">
-            <div class="spinner-grow" role="status">
-                <span class="visually-hidden">Loading...</span>
+    <main class="container my-4">
+      
+        <div class="row " id="health-matrix">
+            <div class="text-center p-4">
+                <div class="spinner-grow" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
             </div>
         </div>
-    </div>
+    </fieldset>
+    </main>
+
     <script>
         const token = `mbrmi0sypof7f1hdjsxgzbf1yxd7rrulks32u7bs`
         window.addEventListener("load", () => {
 
-            function convertJSONToTable(jsonData) {
-                let headers = Object.keys(jsonData[0]);
-                let table = '<table class="table"><thead><tr>';
+            function drawSystemTime() {
+               const systemTimeElement = document.getElementById("system-time")
+                
+               systemTimeElement.style.fontVariantNumeric =  'tabular-nums'
+               systemTimeElement.textContent = `🕒 ${new Date().toLocaleString()}`;
+            }
+            setInterval(drawSystemTime);
 
-                headers.forEach(header => table += `<th>${header}</th>`);
-                table += '</tr></thead><tbody>';
+            function drawHealthMatrix(jsonResponse) {
+                const healthMatrixElement = document.querySelector('#health-matrix')
+                var groupBy = function (xs, key) {
+                    return xs.reduce(function (rv, x) {
+                        (rv[x[key]] = rv[x[key]] || []).push(x);
+                        return rv;
+                    }, {});
+                };
+                var groubedByName = groupBy(jsonResponse, 'name')
+                // console.log(groubedByName);
+                healthMatrixElement.innerHTML = null;
 
-                jsonData.forEach(row => {
-                    table += '<tr>';
-                    headers.forEach(header => table += `<td>${row[header]}</td>`);
-                    table += '</tr>';
+                Object.keys(groubedByName).forEach((testURL) => {
+                    let template = `<div class="col-12  my-2 border rounded bg-light p-2"><details>`
+                    groubedByName[testURL].reverse()
+                    groubedByName[testURL].forEach((testResult, i) => {
+                        template += 
+`
+${i == 0 ? `<summary>&nbsp; ${testURL}` : ``}
+
+
+    <div class="my-2 card ${i>0 ? 'd-block w-50 float-start':''}  text-center">
+        <div style="--bs-bg-opacity: .5;"
+            class="card-header  ${testResult.status == 200 ? 'bg-success border' : 'bg-danger border-danger'}">
+            
+            <div class="d-flex justify-content-between text-nowrap overflow-hidden overflow-ellipsis "
+                style="width: 100%;">
+
+                <div>${testResult.status == 200 ? '🟢' : '🔴'}
+                    <code
+                        class="${testResult.status == 200 ? 'text-success' : 'text-danger'}"> ${testResult.status} </code>
+                </div>
+                <div class="text-muted">
+                    <a style="text-decoration:none;"  href="${testURL}">
+            🔗 
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="card-body bg-dark text-light">
+            <img class="mx-auto my-2" style="display:block; ${i==0? 'max-width:450px;': 'padding: 2em; max-width:100%;'}"
+                src="data:image/png;base64,${testResult.image}" />
+
+
+        </div>
+        <div class="card-footer text-body-secondary">
+            <small>${testResult.status == 200 ? "✅" : "⚠️"} ${testResult.datetime}</small>
+            &bull;
+            <small>⏱️${testResult.message}</small>
+        </div>
+    </div>
+
+${i == 0 ? `</summary>` : ``}
+`
+
+                    });
+
+                    template += '</details></div>'
+
+                    healthMatrixElement.innerHTML += (template)
+
                 });
 
-                table += '</tbody></table>';
-
-                document.getElementById('table-container').innerHTML = table;
             }
 
-            fetch('https://sheetdb.io/api/v1/9bo718p1h3mvi', {
+            let endpoint = {
+                live: "https://sheetdb.io/api/v1/9bo718p1h3mvi",
+                cached: "cached.json"
+            }
+
+            fetch(endpoint.live, {
                 method: 'GET',
                 headers: {
                     'Content-type': 'application/json',
@@ -53,7 +127,8 @@
             })
                 .then(function (response) { return response.json(); })
                 .then(function (json) {
-                    convertJSONToTable(json)
+
+                    drawHealthMatrix(json)
                 });
         })
     </script>
