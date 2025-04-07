@@ -59,14 +59,14 @@
                 healthMatrixElement.innerHTML = null;
 
                 Object.keys(groubedByName).forEach((testURL) => {
-                    let template = `<div class="col-12 col-lg-6 my-2 border rounded bg-light p-2"><details>`
+                    let template = `<div class="col-12  my-2 border rounded bg-light p-2"><details>`
                     groubedByName[testURL].reverse()
                     groubedByName[testURL].forEach((testResult, i) => {
                         template += 
 `
 ${i == 0 ? `<summary>&nbsp; ${testURL}` : ``}
 
-<a style="text-decoration:none;"  href="${testURL}">
+
     <div class="my-2 card ${i>0 ? 'd-block w-50 float-start':''}  text-center">
         <div style="--bs-bg-opacity: .5;"
             class="card-header  ${testResult.status == 200 ? 'bg-success border' : 'bg-danger border-danger'}">
@@ -79,14 +79,16 @@ ${i == 0 ? `<summary>&nbsp; ${testURL}` : ``}
                         class="${testResult.status == 200 ? 'text-success' : 'text-danger'}"> ${testResult.status} </code>
                 </div>
                 <div class="text-muted">
-                    <small><strong>🔗 ${testURL.replace("https://", "")}</strong></small>
+                    <a style="text-decoration:none;"  href="${testURL}">
+            🔗 
+                    </a>
                 </div>
 
             </div>
         </div>
 
         <div class="card-body bg-dark text-light">
-            <img class="img-thumbnail shadow mx-auto my-2" style="display:block; max-width:300px;"
+            <img class="mx-auto my-2" style="display:block; ${i==0? 'max-width:450px;': 'padding: 2em; max-width:100%;'}"
                 src="data:image/png;base64,${testResult.image}" />
 
 
@@ -97,7 +99,7 @@ ${i == 0 ? `<summary>&nbsp; ${testURL}` : ``}
             <small>⏱️${testResult.message}</small>
         </div>
     </div>
-</a>
+
 ${i == 0 ? `</summary>` : ``}
 `
 
