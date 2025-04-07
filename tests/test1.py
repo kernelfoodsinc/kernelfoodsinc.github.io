@@ -19,6 +19,18 @@ from selenium.common.exceptions import WebDriverException
 from selenium.common.exceptions import NoAlertPresentException
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support import expected_conditions as EC
+import pickle
+import mimetypes
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.base import MIMEBase
+from email import encoders
+from google.auth.transport.requests import Request
+from google.oauth2.credentials import Credentials
+from google_auth_oauthlib.flow import InstalledAppFlow
+from googleapiclient.discovery import build
+from googleapiclient.errors import HttpError
+from selenium.webdriver.support.ui import Select
 
 
 
@@ -65,7 +77,7 @@ def test_counterservice():
         status = error_code
         message = f"{load_time}ms"
         image = small_base64
-        print(small_base64)
+        #print(small_base64)
         send_test_data(name, status, message, image)
 
         # Wait for and click a menu item or link (example: click the first menu item)
@@ -77,7 +89,7 @@ def test_counterservice():
       #  print("Clicked on an item in the section.")
 
         # Take a screenshot of the second page (after click)
-        take_screenshot(driver, "counterservice_menu_" + datetime.now().strftime("%Y-%m-%d_%H-%M-%S_%f")[:23] + ".png")
+        #take_screenshot(driver, "counterservice_menu_" + datetime.now().strftime("%Y-%m-%d_%H-%M-%S_%f")[:23] + ".png")
         print("Screenshot taken for second page.")
 
         error_code = check_page_status(driver)
@@ -90,6 +102,7 @@ def test_counterservice():
         # Optionally, click on search button
        # wait_for_and_click(driver, By.XPATH, "//button[@type='submit']")  # Update with correct XPath for search button
        # print("Clicked on search button."
+        small_base64 = take_small_screenshot(driver)
         url =  driver.current_url
         load_time = get_page_load_time(driver)
         print(f"Page load time: {load_time} ms")
@@ -98,7 +111,8 @@ def test_counterservice():
         name = url
         status = error_code
         message = f"{load_time}ms"
-        send_test_data(name, status, message)
+        image = small_base64
+        send_test_data(name, status, message, image)
 
 
         order_now_button = driver.find_element(By.XPATH, "//a[contains(text(), 'Order Now')]")
@@ -107,7 +121,7 @@ def test_counterservice():
         wait_for_page_to_load(driver)
         time.sleep(3)  
 
-        take_screenshot(driver, "counterservice_olo_" + datetime.now().strftime("%Y-%m-%d_%H-%M-%S_%f")[:23] + ".png")
+        #take_screenshot(driver, "counterservice_olo_" + datetime.now().strftime("%Y-%m-%d_%H-%M-%S_%f")[:23] + ".png")
         print("Screenshot taken for second page.")
 
         error_code = check_page_status(driver)
@@ -120,6 +134,7 @@ def test_counterservice():
         # Optionally, click on search button
        # wait_for_and_click(driver, By.XPATH, "//button[@type='submit']")  # Update with correct XPath for search button
        # print("Clicked on search button."
+        small_base64 = take_small_screenshot(driver)
         url =  driver.current_url
         load_time = get_page_load_time(driver)
         print(f"Page load time: {load_time} ms")
@@ -128,7 +143,8 @@ def test_counterservice():
         name = url
         status = error_code
         message = f"{load_time}ms"
-        send_test_data(name, status, message)
+        image = small_base64
+        send_test_data(name, status, message, image)
 
     except Exception as e:
         print(f"Error encountered: {e}")
@@ -137,6 +153,18 @@ def test_counterservice():
         # Close the driver
         close_driver(driver)
         print("Driver closed.")
+        creds = authenticate_gmail()
+        service = build('gmail', 'v1', credentials=creds)
+
+        sender = 'joseph.rahmey@kernel.inc'  # Replace with your email address
+        to = 'joseph.rahmey@kernel.inc'  # Replace with the recipient's email address
+        subject = 'Web Status'
+        body = f'Hi there,\n\nBelow is the current status: \n{name} \n{status} \n{message}  \n\nTo check the current website status and view previous status history click here: https://kernelfoodsinc.github.io/status/'
+        #attachment = 'C:\\Users\\JosephRahmey\\Downloads\\DSR_02_11_2025.pdf'  # Replace with the path to your downloaded file
+
+    # Corrected function name here
+        raw_message = create_message(sender, to, subject, body, attachments=None)
+        send_message(service, sender, raw_message)  # Send the email using the send_message function
 
 # Run the test
 test_counterservice()
