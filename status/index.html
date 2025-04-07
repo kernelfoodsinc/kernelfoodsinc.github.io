@@ -59,44 +59,51 @@
                 healthMatrixElement.innerHTML = null;
 
                 Object.keys(groubedByName).forEach((testURL) => {
-                    let template = `<div class="col-12 col-lg-6">`
+                    let template = `<div class="col-12 col-lg-6 my-2 border rounded bg-light p-2"><details>`
                     groubedByName[testURL].reverse()
                     groubedByName[testURL].forEach((testResult, i) => {
-                        template += `
-                             <a style="text-decoration:none;" href="${testURL}">
-                            <div class="my-2 card ${i > 0 ? 'd-none' : ''} text-center">
-                                <div style="--bs-bg-opacity: .5;" class="card-header  ${testResult.status == 200 ? 'bg-success border' : 'bg-danger border-danger'}">
-                                 
-                                    <div class="d-flex justify-content-between text-nowrap overflow-hidden overflow-ellipsis " style="width: 100%;">  
-                                   
-                                     <div>${testResult.status == 200 ? '🟢' : '🔴'}
-                                            <code class="${testResult.status == 200 ? 'text-success' : 'text-danger'}"> ${testResult.status} </code>
-                                        </div> 
-                                        <div class="text-muted">
-                                            <small><strong>🔗 ${testURL.replace("https://", "")}</strong></small>
-                                        </div> 
-                                        
-                                      
-                                </div>
-                            </div>
-                            
-                            <div class="card-body bg-dark text-light">
-                        <img class="img-thumbnail shadow mx-auto my-2" style="display:block; max-width:300px;" src="data:image/png;base64,${testResult.image}"/>
-                               
-                            
-                                </div>
-                                 <div class="card-footer text-body-secondary">
-                                <small>${testResult.status == 200 ? "✅" : "⚠️"} ${testResult.datetime}</small>
-                                &bull;
-                                <small>⏱️${testResult.message}</small>
-                                </div>
-                                </div>
-                            </a>
-                    `
+                        template += 
+`
+${i == 0 ? `<summary>&nbsp; ${testURL}` : ``}
+
+<a style="text-decoration:none;"  href="${testURL}">
+    <div class="my-2 card ${i>0 ? 'd-block w-50 float-start':''}  text-center">
+        <div style="--bs-bg-opacity: .5;"
+            class="card-header  ${testResult.status == 200 ? 'bg-success border' : 'bg-danger border-danger'}">
+            
+            <div class="d-flex justify-content-between text-nowrap overflow-hidden overflow-ellipsis "
+                style="width: 100%;">
+
+                <div>${testResult.status == 200 ? '🟢' : '🔴'}
+                    <code
+                        class="${testResult.status == 200 ? 'text-success' : 'text-danger'}"> ${testResult.status} </code>
+                </div>
+                <div class="text-muted">
+                    <small><strong>🔗 ${testURL.replace("https://", "")}</strong></small>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="card-body bg-dark text-light">
+            <img class="img-thumbnail shadow mx-auto my-2" style="display:block; max-width:300px;"
+                src="data:image/png;base64,${testResult.image}" />
+
+
+        </div>
+        <div class="card-footer text-body-secondary">
+            <small>${testResult.status == 200 ? "✅" : "⚠️"} ${testResult.datetime}</small>
+            &bull;
+            <small>⏱️${testResult.message}</small>
+        </div>
+    </div>
+</a>
+${i == 0 ? `</summary>` : ``}
+`
 
                     });
 
-                    template += '</div>'
+                    template += '</details></div>'
 
                     healthMatrixElement.innerHTML += (template)
 
