@@ -1,0 +1,51 @@
+[
+    {
+        "Sandwich": "🥩 Roast Beef (The Baron)",
+        "Lower Bound": "28",
+        "Upper Bound": "32",
+        "You Are:": "The Confident Classic",
+        "Description": "You walk into a room and people adjust themselves. You’ve got a vibe that says “I know who I am”—and you do. You prefer one perfectly tailored coat over five trendy ones. You probably journal with an actual pen, maybe even wax-seal letters (or at least fantasize about it). You appreciate things that last: heavy glassware, strong opinions, sharp cheddar. You don’t just set the bar—you are the bar. Classic doesn’t mean boring. Classic means bold enough to never go out of style."
+    },
+    {
+        "Sandwich": "🥑 Green Goddess Chicken Club",
+        "Lower Bound": "16",
+        "Upper Bound": "18",
+        "You Are:": "The Chill Overachiever",
+        "Description": "You’re that rare balance of high-achieving and hydrated. You somehow remember everyone’s birthday and their enneagram. You lead meetings with grace and still manage to squeeze in Pilates and a miso-glazed salmon bowl before 2 PM. Your vibe is “Spotify Deep Focus with fairy lights.” You don’t shout your wins, but they echo anyway. People feel better after talking to you, like opening a window on a warm spring morning. You’re effortlessly aspirational—like the dream life, but with better snack breaks."
+    },
+    {
+        "Sandwich": "🇻🇳 Our Bánh Mí",
+        "Lower Bound": "22",
+        "Upper Bound": "24",
+        "You Are:": "The Adventurer",
+        "Description": "You have a permanent glint in your eye—somewhere between mischief and curiosity. You’re always down to try a new flavor, route, or life hack. Your suitcase is half-packed, your inbox has unread newsletters about street food, and your passport has ink. You bring the energy, the hot sauce, the spontaneous karaoke. People count on you to make life more exciting (and the group dinner order more interesting). You don’t follow trends—you blaze trails and bring your crew with you."
+    },
+    {
+        "Sandwich": "🍄 Mushroom Patty Melt",
+        "Lower Bound": "8",
+        "Upper Bound": "11",
+        "You Are:": "The Cool Weirdo (with Great Taste)",
+        "Description": "You’re the human version of a zine: odd, artful, and completely one-of-a-kind. You’ve got a nose for the funky, the funky for the flavorful, and the flavor for the unexpected. You live in the liminal space between “wtf?” and “this is genius.” You’re the one who recommends films no one’s heard of—but everyone ends up loving. You doodle in the margins and find the best snacks at 2am. People never forget you. They couldn’t if they tried."
+    },
+    {
+        "Sandwich": "🥪 The Yeuben (V)",
+        "Lower Bound": "12",
+        "Upper Bound": "15",
+        "You Are:": "The Cult Favorite",
+        "Description": "You’re not for everyone—and that’s your superpower. You’ve got layers, nuance, and a vibe that’s impossible to pin down. You’re the playlist with no skips, the vintage store gem, the book someone won’t shut up about. You might say little, but your aura is LOUD. People lean in when you speak, not because you demand attention—but because you deserve it. Once people get you, they get you. You don’t chase trends—you curate a world where only the cool stuff survives."
+    },
+    {
+        "Sandwich": "🐷 Roast Pork & Rabe (The Cortese)",
+        "Lower Bound": "19",
+        "Upper Bound": "21",
+        "You Are:": "The Undercover Foodie",
+        "Description": "You’re composed, discerning, and maybe a little intimidating in the way a well-organized spice rack is intimidating. You know the difference between three kinds of anchovies but would never bring it up unless asked. Your taste is impeccable, your drama is minimal, and your energy is intense but intentional. You’re the type to plan a dinner party, pick the wine, make the playlist, and still manage to make everyone feel like they brought something special. You’re not the loudest in the room—but when you talk, people listen."
+    },
+    {
+        "Sandwich": "🥬 The Gigante (V)",
+        "Lower Bound": "25",
+        "Upper Bound": "27",
+        "You Are:": "The Earthy Romantic",
+        "Description": "You’re the person who says “look at that sky” and actually means it. You’re nostalgic for things you haven’t even experienced—old letters, pressed flowers, worn-in records. You believe in slow mornings, strong tea, and artfully plated leftovers. You probably make your own sourdough starter and name it something cute. Friends come to you for comfort, wisdom, and maybe some foraged herbs. You’re dreamy, grounded, and deeply present—the kind of person who turns a simple meal into a ritual."
+    }
+]

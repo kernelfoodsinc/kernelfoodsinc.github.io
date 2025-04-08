@@ -1,0 +1,66 @@
+[
+    {
+        "Q#": "1",
+        "Question": "It’s Sunday. Your only plan is lunch. Where are you headed?",
+        "A": "A hole-in-the-wall I found through a Reddit thread. No signage. Life-changing sandwiches.",
+        "B": "Wherever the vibe feels right. I’ll know it when I smell it.",
+        "C": "My usual spot. They know my order, my dog’s name, and that I like extra pickles.",
+        "D": "I’ve mapped three options, checked their IG stories, and booked a resy—just in case."
+    },
+    {
+        "Q#": "2",
+        "Question": "Your order’s taking a minute. What are you doing while you wait?",
+        "A": "Scanning the counter for house-made hot sauce.",
+        "B": "Watching the kitchen like it’s theater.",
+        "C": "Making conversation with whoever’s next to me—why not?",
+        "D": "Refreshing my email and pretending I’m not refreshing my email."
+    },
+    {
+        "Q#": "3",
+        "Question": "You just sat down with your food. First bite—what’s the move?",
+        "A": "Take a photo. It’s a beauty and the people need to know.",
+        "B": "Analyze the textures. Think about how you’d recreate it at home.",
+        "C": "No thoughts. Just bite. You’re here to eat.",
+        "D": "Offer everyone a taste because you are the generous friend."
+    },
+    {
+        "Q#": "4",
+        "Question": "You’re hosting a dinner party. What’s your vibe?",
+        "A": "Everything’s plated, timed, and perfectly seasoned. Of course.",
+        "B": "Everyone’s in the kitchen. We’re chopping, sipping, talking over each other.",
+        "C": "There are candles, jazz, and an unspoken vibe of “this is the good olive oil.”",
+        "D": "I ordered food. It’s all about the company, not the mise en place."
+    },
+    {
+        "Q#": "5",
+        "Question": "One of your friends eats your fries. No warning. What now?",
+        "A": "I silently recalibrate trust.",
+        "B": "I start eating their food immediately. Eye contact, no words.",
+        "C": "That was a test. You passed.",
+        "D": "I brought extra fries because I knew this would happen."
+    },
+    {
+        "Q#": "6",
+        "Question": "Your friend suggests a new sandwich place. You…",
+        "A": "Immediately check the menu, reviews, and whether they bake in-house.",
+        "B": "Say yes, but insist we go now before the TikTok crowd finds it.",
+        "C": "Act cool but internally mark your calendar for a solo visit next week.",
+        "D": "Invite five other people—let’s turn it into a proper sandwich crawl."
+    },
+    {
+        "Q#": "7",
+        "Question": "NYC is suddenly 75° and sunny. What are you eating outside?",
+        "A": "A perfect cold sandwich and an iced tea in a sunny square.",
+        "B": "Something spicy, handheld, and messy.",
+        "C": "A salad you can stab with a fork while leaning on a bench.",
+        "D": "The leftovers from last night, eaten proudly in public."
+    },
+    {
+        "Q#": "8",
+        "Question": "Choose your sandwich-adjacent fantasy:",
+        "A": "You’re the person behind the counter, slicing pastrami with artful precision.",
+        "B": "You host a secret sandwich supper club in your apartment.",
+        "C": "You get paid to eat and write about sandwiches.",
+        "D": "You’re just vibing in the park with a sandwich that cost too much but was so worth it."
+    }
+]
