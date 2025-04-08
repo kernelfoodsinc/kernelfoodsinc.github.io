@@ -22,6 +22,24 @@ h1 {
     font-size: 3em;
 }
 
+#share {
+    position: fixed;
+    top: 1em;
+    right: 1em;
+}
+
+#share-api {
+    position: fixed;
+    top: 1em;
+    left: 1em;
+}
+#share-result {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 1em;
+}
+
 #quiz {
 
     width: 800px;

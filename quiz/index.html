@@ -1,23 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--  Meta OG tags -->
+    <meta property="fb:app_id" content="your_app_id" />
+    <meta property="og:url" content="https://counterservice.com/quiz" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Sando Quiz" />
+    <meta property="og:description" content="What's your sandwich personality?" />
+    <meta property="og:image" content="https://counterservice.com/quiz/share-image.jpg" />
+    <!-- Twitter OG tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@nytimes">
+    <meta name="twitter:creator" content="@counterservice.eats">
+    <meta name="twitter:title" content="Sando Quiz">
+    <meta name="twitter:description" content="What's your sandwich personality">
+    <meta name="twitter:image" content="https://counterservice.com/quiz/share-image.jpg">
+    <meta name="twitter:site" content="@website-username">
+
     <title>Quiz</title>
     <link rel="icon" href="../img/logo.svg" />
     <link rel="stylesheet" href="index.css" />
 </head>
+
 <body>
+    <button id="share-api">Share API</button>
+    <div id="share-result"></div>
+    <button id="share">Copy Share Link</button>
+    
     <div id="quiz">
         <div id="questions">Are you ready to start the quiz?</div>
         <ul id="answers"> <!-- Answers --> </ul>
         <button id="button" class="button">Start quiz</button>
     </div>
-    
-    <div id="results"> <!-- Results --> </div>
-    <div id="error"><p>There was an error. Please try again</p></div>
-    
+
+    <div id="results"> <!-- Results --> <button id="share">Copy link to share</button></div>
+    <div id="error">
+        <p>There was an error. Please try again</p>
+    </div>
+
     <script src="lib.js"></script>
     <script src="index.js"></script>
 </body>
+
 </html>

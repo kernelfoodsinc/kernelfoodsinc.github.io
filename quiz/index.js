@@ -1,6 +1,50 @@
 
 const style = 'background-color: darkblue; color: white; font-style: italic; padding:.2em; font-size: 30px;'
+
 document.addEventListener("DOMContentLoaded", () => {
+
+// ------------------------------------------------------
+// @SHARE-API  ------------------------------------------
+// ------------------------------------------------------
+
+  let shareData = {
+    title: "Sando Personality Quiz",
+    text: "Which sando are you?",
+    url: "https://counterservice.com/quiz",
+  };
+  
+  const btn = document.querySelector("#share-api");
+  const resultPara = document.querySelector("#share-result");
+  
+  // Share must be triggered by "user activation"
+  btn.addEventListener("click", async () => {
+    try {
+      await navigator.share(shareData);
+      resultPara.style.color = 'green'
+      resultPara.textContent = "shared successfully";
+    } catch (err) {
+      resultPara.style.color = 'red'
+      resultPara.textContent = `Error: ${err}`;
+    }
+  });
+
+// ------------------------------------------------------
+// @SHARE-BUTTON  ---------------------------------------
+// ------------------------------------------------------
+
+  const shareButton = document.getElementById("share")
+  // shareButton.textContent = "Share"
+  // shareButton.id = "share"
+  
+  shareButton.onclick = () => {
+    const shareMessage = `${shareData.title} - ${shareData.text}\rTry it out at ${shareData.url}`;
+    navigator.clipboard.writeText(shareMessage).then(() => {
+        alert(`Copied to clipboard:\r\r${shareMessage}`);
+    }).catch(err => {
+        alert('Failed to copy link. Please try again.');
+    });
+};
+
  
   function drawQuiz(
     answerTextArray,
@@ -15,12 +59,12 @@ document.addEventListener("DOMContentLoaded", () => {
      
     let answerText = choicesTextArray;
     let answerValues = [];
-    let buttonElement = document.getElementById("button");
-    let quiz = document.getElementById("quiz");
+    const buttonElement = document.getElementById("button");
+    const quiz = document.getElementById("quiz");
     let questionState = 0;
     let quizActive = true;
     let questionText = answerTextArray;
-    let results = document.getElementById("results");
+    const results = document.getElementById("results");
     let totalPoints = 0;
 
 // ------------------------------------------------------
@@ -42,19 +86,18 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function drawQuestion(question) {
+      
       let answerSelection = ``;
 
       for (i = 0; i < answerText[question].length; i++) {
         let answerChoice = answerText[question][i]
         answerSelection += `
           <li> 
-            <input type="radio" name="question${question + 1}" 
+            <input type="radio" 
+                   name="question${question + 1}" 
                    onClick="window.setAnswer(${i},${question})" 
-                   id="${answerChoice}">
-
-              <label for="${answerChoice}">
-                ${answerChoice}
-              </label>
+                   id="${answerChoice}" />
+                   <label for="${answerChoice}">${answerChoice}</label>
           </li>`;
       }
 
@@ -111,7 +154,11 @@ document.addEventListener("DOMContentLoaded", () => {
         //   totalPoints >= lowerBound && totalPoints <= upperBound
         // );
       });
+
+      shareData.text += `\r-\rI'm the ${resultsInfo["Sandwich"]} - ${resultsInfo["You Are:"]}`
+      
       results.innerHTML = `
+     
         <!-- <h1>${totalPoints}</h1> -->
         <h2>${resultsInfo["You Are:"]}</h2>
         <h3>${resultsInfo["Sandwich"]}</h3>
@@ -120,6 +167,8 @@ document.addEventListener("DOMContentLoaded", () => {
         <button class="button" onClick="javascript:window.location.href=window.location.href">Restart quiz</button>
         <!-- <pre>${JSON.stringify(resultsInfo, null, 2)}</pre> -->
     `;
+    shareButton.setAttribute("data-result", resultsInfo["You Are:"])
+    // results.appendChild(shareButton)
     }
 
     buttonElement.addEventListener("click", updateQuizState);
