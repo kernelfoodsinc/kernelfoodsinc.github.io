@@ -6,63 +6,83 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kernel Engineering | Welcome</title>
   <link rel="icon" href="img/logo.svg" />
- 
-  <style>
-    body {
-      font-family:monospace;
-      padding: .5em;
-      background: #0b641275;
-      
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
+    rel="stylesheet">
 
-      main {
-        position: absolute;
-        top: 50%;
-        
-        left: 50%;
-        transform: translate3d(-50%,-50%,0);
-      
-        /* border: solid 1px red; */
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-
-        img {
-          width: 300px;
-          margin: -25% 0;
-        }
-
-        h1 {
-          /* transform: translateY(-100%); */
-          font-size: 3em;
-          display: block;
-          background-color: #000;
-          color: #fff;
-          text-align: center;
-          padding: .25em;
-        }
-      }
-    }
-    
-    
-  </style>
+  <link rel="stylesheet" href="/css/bootstrap.core.min.css" />
+  <link rel="stylesheet" href="./index.css"/>
 </head>
 
 <body>
+  <!-- <img src="mock1.png"/> -->
+  <main
+    class="archivo-black-regular container py-2 px-2 d-flex gap-2  gap-md-4 flex-column justify-content-center align-items-center">
 
- <main>
-  <h1>Welcome to</h1>
-  <img src="img/logo.svg"/>
-  <h1>Engineering</h1>
-  <a href="/challenges/palindromes/">Palindrome Challenge</a>
- </main>
+    <a class="align-self-start" href="/">
+      <img src="/img/home_icon.png" />
+    </a>
+
+    <h1 class="display-1 text-uppercase">Kernel</h1>
+    
+    <div style=" height:1px;" class="flex-grow w-100 px-5 mx-3 h-1 bg-black"></div>
+    
+    <h2 class="text-center px-5 mx-3 h-2 md:display-5">
+      THE RESTAURANT OPERATING&nbsp;SYSTEM 
+      PROVEN BY RESTAURANT&nbsp;OPERATORS</h2>
+
+    <div id="mid" class="container-fluid">
+      <div class="border border-white overflow-hidden">
+        <div class="row">
+         
+          <div class="col-12 col-md-6 border-end border-white ">
+            <img class="img-fluid d-block m-auto" src="img/kernel_logo.png" />
+            <p class="lead text-uppercase text-center roboto-mono-bold m-auto mb-2">
+              Kernel Platform
+            </p>
+            <p class="roboto-mono-light text-uppercase text-center m-auto p-2">
+              ADVANCED MACHINE LEARNING MODELS INTEGRATE STAFF AND AUTOMATION SYSTEMS FOR 
+              EFFICIENT RESTAURANT MANAGEMENT, LOW-WASTE FRESH INGREDIENT FORECASTING, 
+              AND INTELLIGENT ORDER EXPEDITING—ALL TO SPEED RESTAURANT THROUGHPUT 
+              AND BUILD LOYAL CUSTOMERS. 
+            </p>
+          </div>
+
+          <div style=" height:1px;" class="col-12 d-block mt-5 d-md-none d-lg-none flex-grow h-1 bg-white"></div>
+
+
+          <div class="col-12 col-md-6">
+            <img class="img-fluid d-block m-auto" src="img/cs_logo.png" />
+            <p class="lead text-uppercase text-center roboto-mono-bold  m-auto mb-2">Counter Service</p>
+            <p class="roboto-mono-light  text-uppercase text-center m-auto p-2 pb-4">REAL FOOD ON REALLY GOOD BREAD.
+              Counter Service IS OUR RESTAURANT CONCEPT SERVING ELEVATED SANDWICHES. its delicious food made from
+              premium ingredients, fast and predictable service, operational excellence, and digital convenience—all
+              supported by a lean, scalable operating model for rapid expansion. </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="end" class="text-uppercase text-center mt-5">
+      <a href="about" class="display-2 d-block">About</a>
+      <a href="https://www.linkedin.com/company/counterservicebykernel/" class="display-2 d-block">LinkedIn</a>
+      <a href="https://counterservicenyc.substack.com/" class="display-2 d-block">Substack</a>
+      <a href="https://counterservice.r365hire.com/jobs/" class="display-2 d-block">Work With Us</a>
+    </div>
+
+    <footer style="width: 100%;"
+      class="h2 d-flex justify-content-between flex-column flex-lg-row align-items-center align-items-md-between text-uppercase p-5">
+      <div>Kernel Foods, Inc.</div>
+      <div>&copy; 2025</div>
+    </footer>
+
+  </main>
+
 
   <script>
-
-    window.addEventListener("load", () => {
-     
-      
-    })
+      window.addEventListener("load", () => { })
   </script>
 
 </body>

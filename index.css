@@ -1,0 +1,90 @@
+@import url(https://fonts.googleapis.com/css2?family=Archivo+Black&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap);
+@import url(/css/bootstrap.core.min.css);
+
+.archivo-black-regular {
+    font-family: "Archivo Black", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.roboto-mono-light {
+    font-family: "Roboto Mono", monospace;
+    font-optical-sizing: auto;
+    font-weight: light;
+    font-style: normal;
+}
+
+.roboto-mono-bold {
+    font-family: "Roboto Mono", monospace;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    font-style: normal;
+}
+
+body {
+    background-color: #f1ecbf;
+    color: #000;
+}
+
+main {
+    position: relative;
+    cursor: default;
+}
+
+a {
+    text-decoration: none;
+    color: #000
+}
+a.active,
+a:hover {
+    text-decoration: underline;
+}
+
+#end a {
+    letter-spacing: -2px;
+}
+
+/* about */
+
+/* Kernel Foods Inc operates a fast casual restaurant brand ‘Counter Service’—a technology-enabled, quality-first sandwich concept. It builds integrated technology solutions under the brand name ‘Kernel’ to enable fast, predictable service, high throughput and an efficient business model.  Kernel Foods is building the next generation restaurant operating system while simultaneously leveraging the platform to rapidly scale its own restaurant chain and prove the model. */
+
+.blurb     {
+    max-width: 628px;
+    
+    font-family: 'Archivo Black';
+    font-style: normal;
+    font-weight: 400;
+
+    line-height: 100%;
+    display: block;
+    align-items: center;
+    letter-spacing: -0.06em;
+}
+
+@media (min-width:990px) {
+    .display-1 {
+        font-size: 11rem
+    }
+
+    .display-2 {
+        font-size: 8rem
+    }
+
+    .display-5 {
+        font-size: 2rem;
+    }
+
+    #end a {
+        letter-spacing: -5px;
+    }
+
+    .blurb {
+        font-size: 48px;
+    }
+
+
+}
+
+.col-12 p {
+    max-width: 420px;
+}
