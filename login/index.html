@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kernel Engineering | Welcome</title>
+    <title>Kernel - Login to access your Kernel Restaurant Management System</title>
     <link rel="icon" href="img/logo.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -69,11 +69,24 @@
             const domain = document.querySelector('#domain')
             const accepted = ['counterservice', 'countservice.com']
             const waitlist = document.querySelector('#waitlist')
+
+            function cleanDomain(str) {
+            return    str.split(' ')
+                .join('')  
+                .replace('.com','')       
+                .toLowerCase()
+                .replace(/\s+/g, '')
+                .replace(/^https?:\/\//, '')
+                .replace(/^www\./, '')
+                .replace(/\./g, ''); 
+            
+            }
             
             form.addEventListener('submit', (e)=>{
                 event.preventDefault();
-                if(domain.value == "counterservice.com" 
-                || domain.value == "counterservice"){
+     
+                if(cleanDomain(domain.value) == "counterservice.com" 
+                || cleanDomain(domain.value) == "counterservice"){
                     window.location.href = `//counterservice.eatkernel.com`
                 }else{
                     waitlist.innerHTML = `

@@ -1,0 +1,156 @@
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background: #91c1d1;
+    background: linear-gradient(to bottom, #91c1d1 0%, #91d1c1 99%);
+    text-align: center;
+    color: #fff;
+    font-family: system-ui;
+    display: flex;
+    justify-content: center;
+    padding: 1em;
+}
+
+h1 {
+   
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 3em;
+}
+
+#share {
+    position: fixed;
+    top: 1em;
+    right: 1em;
+}
+
+#share-api {
+    position: fixed;
+    top: 1em;
+    left: 1em;
+}
+#share-result {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 1em;
+}
+
+#quiz {
+    max-width: 800px;
+    /* margin: auto; */
+    /* padding: 4em; */
+    /* border: solid 1px red; */
+    display: flex
+;
+    flex-direction: column;
+    align-self: center;
+
+}
+
+#questions {
+    font-size: 2.3em;
+}
+
+#answers {
+    list-style: lower-alpha;
+    /* padding: 10px; */
+    text-align: center;
+    /* margin: 1em auto 2em; */
+    display: flex
+;
+    flex-direction: column;
+    flex-flow: wrap;
+    /* gap: 5%; */
+    /* align-items: center; */
+    justify-content: center;
+    /* margin: 1em auto; */
+    margin: 2.2em 0;
+    padding: 0;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+}
+
+#answers li {
+    position: relative;
+    width: 50%;
+    display: inline-block;
+    /* width: 49%; */
+    /* align-self: flex-start; */
+    /* min-width: 300px; */
+    /* margin: 0 0 1em; */
+    padding: 0;
+    margin: 0;
+}
+
+#answers label,
+#answers input {
+    display: block;
+   
+}
+
+#answers input[type="radio"] {
+    opacity: 0.011;
+    z-index: 100;
+    padding: 2px;
+    position: absolute;
+}
+
+#answers input[type="radio"]:checked+label {
+    opacity: 1;
+    background-color: #5aa9be75;
+}
+
+#answers label {
+    cursor: pointer;
+    z-index: 90;
+    opacity: 0.7;
+    transition: all 0.2s linear;
+    display: flex;
+    border: solid 1px red;
+    text-align: left;
+    align-items: baseline;
+    gap: 1em;
+    justify-content: flex-start;
+    padding: 1em;   
+}
+
+#answers label:hover {
+    opacity: 1;
+    background-color: #5aa8be2e;;
+}
+
+.button {
+    border: 2px solid #fff;
+    margin: 0.5em;
+    padding: 0.5em;
+    display: inline-block;
+    background-color: transparent;
+    text-transform: uppercase;
+    padding: 10px;
+    color: #fff;
+}
+
+.button:hover {
+    cursor: pointer;
+    background-color: #91c2d0;
+}
+
+#results {
+    display: none;
+    margin: auto;
+    max-width: 400px;
+    text-align: justify;
+    padding: 1em 2em;
+}
+
+#error {
+    display: none;
+}

@@ -12,47 +12,48 @@ document.addEventListener("DOMContentLoaded", () => {
   // @SHARE-API  ------------------------------------------
   // ------------------------------------------------------
 
-  // let shareData = {
-  //   title: "Sando Personality Quiz",
-  //   text: "Which sando are you?",
-  //   url: "https://counterservice.com/quiz",
-  // };
+  let shareData = {
+    title: "Sando Personality Quiz",
+    text: "Which sando are you?",
+    url: "https://counterservice.com/quiz",
+  };
 
-  // const btn = document.querySelector("#share-api");
-  // const resultPara = document.querySelector("#share-result");
+  const btn = document.querySelector("#share-api");
+  const resultPara = document.querySelector("#share-result");
 
-  // // Share must be triggered by "user activation"
-  // btn.addEventListener("click", async () => {
-  //   try {
-  //     await navigator.share(shareData);
-  //     // resultPara.style.color = "green";
-  //     // resultPara.textContent = "shared successfully";
-  //     console.log(`shared successfully`)
-  //   } catch (err) {
-  //     // resultPara.style.color = "red";
-  //     // resultPara.textContent = `Error: ${err}`;
-  //     console.log(`Error: ${err}`);
-  //   }
-  // });
+  // Share must be triggered by "user activation"
+  btn.addEventListener("click", async () => {
+    try {
+      await navigator.share(shareData);
+      // resultPara.style.color = "green";
+      // resultPara.textContent = "shared successfully";
+      console.log(`shared successfully`)
+    } catch (err) {
+      // resultPara.style.color = "red";
+      // resultPara.textContent = `Error: ${err}`;
+      console.log(`Error: ${err}`);
+    }
+  });
 
   // ------------------------------------------------------
   // @SHARE-BUTTON  ---------------------------------------
   // ------------------------------------------------------
 
-  // const shareButton = document.getElementById("share");
-  
+  const shareButton = document.getElementById("share");
+  // shareButton.textContent = "Share"
+  // shareButton.id = "share"
 
-  // shareButton.onclick = () => {
-  //   const shareMessage = `${shareData.title} - ${shareData.text}\rTry it out at ${shareData.url}`;
-  //   navigator.clipboard
-  //     .writeText(shareMessage)
-  //     .then(() => {
-  //       alert(`Copied to clipboard:\r\r${shareMessage}`);
-  //     })
-  //     .catch((err) => {
-  //       alert("Failed to copy link. Please try again.");
-  //     });
-  // };
+  shareButton.onclick = () => {
+    const shareMessage = `${shareData.title} - ${shareData.text}\rTry it out at ${shareData.url}`;
+    navigator.clipboard
+      .writeText(shareMessage)
+      .then(() => {
+        alert(`Copied to clipboard:\r\r${shareMessage}`);
+      })
+      .catch((err) => {
+        alert("Failed to copy link. Please try again.");
+      });
+  };
 
   function drawQuiz(
     answerTextArray,
@@ -100,12 +101,12 @@ document.addEventListener("DOMContentLoaded", () => {
       
       for (i = 0; i < answerText[question].length; i++) {
         let answerChoice = answerText[question][i];
-        // let letter = String.fromCharCode(65 + i);
+        let letter = String.fromCharCode(65 + i);
         answerSelection += `
           <li> 
             <input type="radio" name="question${question+1}" onClick="window.setAnswer(${i},${question})" id="${answerChoice}" />
                   <label for="${answerChoice}">
-        
+                  <div>${letter}.</b> </div>
                   <div>${answerChoice}</div>
                   </label>
           </li>`;

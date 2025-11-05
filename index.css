@@ -31,7 +31,9 @@ main {
     cursor: default;
     min-height: 100dvh;
 }
-
+button {
+    color: #000
+}
 a {
     text-decoration: none;
     color: #000
