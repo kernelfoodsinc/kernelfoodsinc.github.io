@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kernel Engineering | Welcome</title>
+    <link rel="icon" href="img/logo.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <base href="../" />
+    <link rel="stylesheet" href="css/bootstrap.core.min.css" />
+    <link rel="stylesheet" href="index.css" />
+    <style>
+        body {
+            background-color: #fff;
+        }
+
+        main h2 {
+            letter-spacing: -3px;
+            max-width: 752px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <main
+        class="roboto-mono-light container py-2 px-3 d-flex gap-2  gap-md-4 flex-column justify-content-center align-items-center">
+
+        <!-- <a class="align-self-start" href="/">
+            <img src="/img/home_icon.png" />
+        </a> -->
+
+        <img class="img-fluid d-block m-auto" style="max-width: 170px;" src="img/kernel_logo.png" />
+
+        <h1 class="h3 text-uppercase text-center" style="max-width:675px">
+            LOGIN TO ACCESS YOUR RESTAURANT KERNEL&nbsp;MANAGEMENT&nbsp;SYSTEM
+        </h1>
+
+        <div id="waitlist" class="w-100 mt-2"></div>
+        
+        <form class="d-flex align-items-center gap-3 py-4 pt-1 my-4 mt-1 gap-md flex-column flex-md-row">
+            <div class="h5 text-uppercase ">Domain</div>
+            <input id="domain" autofocus class="border border-black border-2 p-3 px-3 px-md-2" placeholder="Domain" type="text" />
+            <button id="go" style="background-color: #F1ECBF; width: 100%"
+                class="border border-black border-2  p-3 px-4 shadow shadow roboto-mono-bold lead text-uppercase">Go</button>
+        </form>
+
+
+        <p class="roboto-mono-light text-center" style="max-width: 550px;">
+            ADVANCED MACHINE LEARNING MODELS INTEGRATE STAFF AND AUTOMATION SYSTEMS FOR EFFICIENT RESTAURANT MANAGEMENT,
+            LOW-WASTE FRESH INGREDIENT FORECASTING, AND INTELLIGENT ORDER EXPEDITING—ALL TO SPEED RESTAURANT THROUGHPUT
+            AND BUILD LOYAL CUSTOMERS.
+        </p>
+
+        <footer
+            class="w-100 text-center  d-flex justify-content-between flex-column flex-lg-row align-items-center align-items-md-between text-uppercase p-5">
+            <div>&copy; Kernel Foods, Inc.</div>
+            <div>Learn more at <a href="/">Kernel.inc&raquo;</a></div>
+        </footer>
+
+    </main>
+
+    <script>
+        window.addEventListener("load", () => {
+            const form = document.querySelector('form')
+            const go = document.querySelector('#go')
+            const domain = document.querySelector('#domain')
+            const accepted = ['counterservice', 'countservice.com']
+            const waitlist = document.querySelector('#waitlist')
+            
+            form.addEventListener('submit', (e)=>{
+                event.preventDefault();
+                if(domain.value == "counterservice.com" 
+                || domain.value == "counterservice"){
+                    window.location.href = `//counterservice.eatkernel.com`
+                }else{
+                    waitlist.innerHTML = `
+                    <div style="background:orange" class="p-2">
+                        <div class="roboto-mono-bold">Unknown Domain: <strong>${domain.value}</strong></div>
+                      
+                        This domain doesn't exist. 
+                        <br/>
+                       <a class="small" href="mailto:support@kernel.inc">Contact Support</a>
+                    </div>
+                    `      
+                }
+ 
+            })
+            
+        })
+    </script>
+
+</body>
+
+</html>

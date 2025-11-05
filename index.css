@@ -29,6 +29,7 @@ body {
 main {
     position: relative;
     cursor: default;
+    min-height: 100dvh;
 }
 
 a {
