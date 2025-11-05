@@ -40,11 +40,41 @@ a {
 }
 a.active,
 a:hover {
-    text-decoration: underline;
+    text-decoration: none;
+
+}
+
+a.active {
+    opacity: 0.5;
+}
+
+#mid .col-12:hover {
+    background-color: #f3eec6;
+}
+
+#mid a img {
+    transform: rotate(0deg);
+    transition: all 500ms;
+}
+
+#mid a:hover img {
+  transform: rotate(1deg);
+}
+
+#mid .border-end a:hover img {
+      transform: rotate(-1deg);
 }
 
 #end a {
     letter-spacing: -2px;
+}
+
+#end a {
+    opacity: 1;
+    transition: opacity 500ms;
+    &:hover {
+        opacity: 0.5;
+    }
 }
 
 /* about */

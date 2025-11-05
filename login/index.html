@@ -84,21 +84,30 @@
             
             form.addEventListener('submit', (e)=>{
                 event.preventDefault();
-     
+                const notEmptyDomain = !!domain.value
                 if(cleanDomain(domain.value) == "counterservice.com" 
                 || cleanDomain(domain.value) == "counterservice"){
                     window.location.href = `//counterservice.eatkernel.com`
                 }else{
                     waitlist.innerHTML = `
-                    <div style="background:orange" class="p-2">
-                        <div class="roboto-mono-bold">Unknown Domain: <strong>${domain.value}</strong></div>
+                    <div style="max-width:500px;background:${notEmptyDomain ? '#f1c8bf' : '#bfdbf1'}" class="border border-black border-1 m-auto shadow shadow-sm p-4">
+                        
+                        <div class="roboto-mono-bold lead">
+                            <strong> ${notEmptyDomain ? 'Domain Uknown: '+cleanDomain(domain.value) : 'Domain Required'}</strong>
+                        </div>
+
+                        <hr />
                       
-                        This domain doesn't exist. 
-                        <br/>
-                       <a class="small" href="mailto:support@kernel.inc">Contact Support</a>
+                        ${notEmptyDomain ? 'This domain doesn\'t exist.' : 'Enter a domain name to access Kernel'}
+                       
+                        <hr/>
+                       <div class="text-end">
+                        <a class="small" href="mailto:support@kernel.inc">Contact Support &raquo;</a>
+                        </div>
                     </div>
                     `      
                 }
+                domain.select().focus()
  
             })
             
